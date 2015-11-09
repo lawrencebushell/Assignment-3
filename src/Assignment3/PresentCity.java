@@ -25,7 +25,7 @@ public class PresentCity extends City {
 
     }
 
-    void distributePresent() {
+    private void distributePresent() {
 
         showThingCounts(true);
 
@@ -41,7 +41,7 @@ public class PresentCity extends City {
         }
     }
 
-    void putWalls() {
+    private void putWalls() {
 
         for (int i = 0; i < size; i++) {
             new Wall(this, 0, i, Direction.NORTH);

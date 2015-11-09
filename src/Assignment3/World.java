@@ -12,23 +12,31 @@ import java.awt.*;
 
 public class World {
 
-    int size;       //Size of the frame
-    int present;    //Instead of bombs
+    private int size;       //Size of the frame
+    private int present;    //Instead of bombs
 
-    Frame frame;    //"Reasonable" Frame
-    PresentCity presentCity; //Instead of bombcity
-    RobotUIComponents roboComps;    //Not sure what this is doing
-    CityView view;
+    private Menu menu;
+    private Frame frame;    //"Reasonable" Frame
+    private PresentCity presentCity; //Instead of bombcity
+    private RobotUIComponents roboComps;    //Not sure what this is doing
+    private CityView view;
+
+    private JButton up = new JButton("up");
+    private JButton left = new JButton("left");;
+    private JButton down = new JButton("down");;
+    private JButton right = new JButton("right");;
+    private JButton pick = new JButton("pick");;
 
 
 
     public World(){ //Default constructor
         frame = new Frame("Paris");
+        menu = new Menu();
         size = 11;
         present = 1;
     }
 
-    public void addCity() {
+    private void addCity() {
 
         City.showFrame(false);
 
@@ -43,17 +51,16 @@ public class World {
         frame.pack();
     }
 
-    protected JMenu createActionsMenu(){
+    private JMenu createActionsMenu(){
 
         JMenuItem restart = new JMenuItem("Pause/Play");
-
 
         JMenu actions = new JMenu("Actions");
         actions.add(restart);
         return actions;
     }
 
-    protected JMenu createSettingsMenu() {
+    private JMenu createSettingsMenu() {
 
         JRadioButtonMenuItem easy = new JRadioButtonMenuItem("Easy");
         JRadioButtonMenuItem medium = new JRadioButtonMenuItem("Medium");
@@ -75,7 +82,7 @@ public class World {
         return settings;
     }
 
-    public void addMenu() {
+    private void addMenu() {
 
         JMenuBar menuBar = new JMenuBar();
 
@@ -89,6 +96,10 @@ public class World {
         frame.setJMenuBar(menuBar);
 
         frame.pack();
+    }
+
+    private void addController(){
+        JPanel controller = new JPanel(new BorderLayout());
 
     }
 
@@ -97,6 +108,8 @@ public class World {
       World world = new World();
         world.addCity();
         world.addMenu();
+
+
 
 
 

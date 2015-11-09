@@ -8,5 +8,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="becker" level="project" />
+    <orderEntry type="library" name="becker (1) (2)" level="project" />
   </component>
 </module>

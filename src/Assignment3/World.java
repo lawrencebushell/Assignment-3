@@ -22,14 +22,17 @@ public class World{
     private CityView view;
 
     private JButton up = new JButton("up");
-    private JButton left = new JButton("left");;
-    private JButton down = new JButton("down");;
-    private JButton right = new JButton("right");;
-    private JButton pick = new JButton("pick");;
+    private JButton left = new JButton("left");
+    ;
+    private JButton down = new JButton("down");
+    ;
+    private JButton right = new JButton("right");
+    ;
+    private JButton pick = new JButton("pick");
+    ;
 
 
-
-    public World(){ //Default constructor
+    public World() { //Default constructor
         frame = new Frame("Paris");
         menu = new Menu();
         size = 11;
@@ -42,6 +45,10 @@ public class World{
 
         presentCity = new PresentCity(size, present);
 
+        AI enemy = new AI(presentCity, 5, 5, Direction.NORTH);
+        Thread enemyThread = new Thread(enemy);
+        enemyThread.start();
+
         roboComps = new RobotUIComponents(presentCity, 0, 0, size, size);
 
         view = roboComps.getCityView();
@@ -51,7 +58,7 @@ public class World{
         frame.pack();
     }
 
-    private JMenu createActionsMenu(){
+    private JMenu createActionsMenu() {
 
         JMenuItem restart = new JMenuItem("Pause/Play");
 
@@ -99,6 +106,7 @@ public class World{
         frame.pack();
     }
 
+
     private void addControllers(){
 
      //   JPanel panel = new JPanel();
@@ -108,20 +116,22 @@ public class World{
 
             frame.add(up).setLocation(1,0);
             up.setSize(1,1);
+    }
 
+
+
+    private void addController() {
+        JPanel controller = new JPanel(new BorderLayout());
 
 
     }
 
     public static void main(String[] args) {
 
-      World world = new World();
+        World world = new World();
         world.addCity();
         world.addMenu();
         world.addControllers();
-
-
-
 
     }
 

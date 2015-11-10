@@ -17,12 +17,12 @@ public class Frame extends JFrame {
 
 
 
-
+/*
     public static void main(String[] args) {
         Frame frame = new Frame("I am reasonable!");
         frame.setSize(550, 500);
 
-    }
+    }*/
 }
 
 

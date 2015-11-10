@@ -15,14 +15,6 @@ public class Frame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-
-
-
-    public static void main(String[] args) {
-        Frame frame = new Frame("I am reasonable!");
-        frame.setSize(550, 500);
-
-    }
 }
 
 

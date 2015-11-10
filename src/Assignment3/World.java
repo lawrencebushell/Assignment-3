@@ -10,7 +10,7 @@ import java.awt.*;
  * Main class
  */
 
-public class World {
+public class World{
 
     private int size;       //Size of the frame
     private int present;    //Instead of bombs
@@ -93,13 +93,23 @@ public class World {
 
         menuBar.add(settings);
 
+
         frame.setJMenuBar(menuBar);
 
         frame.pack();
     }
 
-    private void addController(){
-        JPanel controller = new JPanel(new BorderLayout());
+    private void addControllers(){
+
+     //   JPanel panel = new JPanel();
+       // panel.setLayout(new GridBagLayout());
+      //  Container BG = getContentPane();
+    //    BG.setLayout(new BoxLayout());
+
+            frame.add(up).setLocation(1,0);
+            up.setSize(1,1);
+
+
 
     }
 
@@ -108,7 +118,7 @@ public class World {
       World world = new World();
         world.addCity();
         world.addMenu();
-
+        world.addControllers();
 
 
 

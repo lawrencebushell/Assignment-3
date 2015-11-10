@@ -46,11 +46,12 @@ public class World{
         presentCity = new PresentCity(size, present);
 
         AI enemy = new AI(presentCity, 5, 5, Direction.NORTH);
-        Thread enemyThread = new Thread(enemy);
+        Thread enemyThread = new Thread(enemy, "AI thread");
         enemyThread.start();
 
         roboComps = new RobotUIComponents(presentCity, 0, 0, size, size);
 
+        roboComps.getStartStopButton().doClick();
         view = roboComps.getCityView();
 
         frame.add(view);

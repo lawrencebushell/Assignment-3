@@ -13,7 +13,7 @@ import static dit948.Random.randomInt;
  */
 public class AI extends Robot implements Runnable {
 
-    private static double stdSpeed = 1;
+    private static double stdSpeed = 10;
 
     public AI(City city, int i, int i1, Direction direction) {
         super(city, i, i1, direction);
@@ -23,19 +23,24 @@ public class AI extends Robot implements Runnable {
     public void randomMove() {
         setSpeed(stdSpeed);
         int nrTurns = randomInt(4);
+        System.out.println(getSpeed());
         double speed = getSpeed();
         if (nrTurns > 0)
             setSpeed(nrTurns*speed);
-        for (int i = 0; i < nrTurns; i++)
+        for (int i = 0; i < nrTurns; i++) {
             turnLeft();
+            System.out.println("Turn left");
+        }
+        System.out.println("Turn done");
         setSpeed(speed);
+
         move();
     }
 
-    @Override
     public void run() {
         while (true){
             randomMove();
+
         }
     }
 }

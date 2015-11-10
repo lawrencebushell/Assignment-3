@@ -3,6 +3,7 @@ package Assignment3;
 import becker.robots.*;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 
 /**
@@ -21,6 +22,8 @@ public class World{
     private RobotUIComponents roboComps;    //Not sure what this is doing
     private CityView view;
 
+    JPanel panel;
+    JPanel controller;
     private JButton up = new JButton("up");
     private JButton left = new JButton("left");
     ;
@@ -34,9 +37,10 @@ public class World{
 
     public World() { //Default constructor
         frame = new Frame("Paris");
-        menu = new Menu();
         size = 11;
         present = 1;
+        panel = new JPanel();
+        controller = new JPanel();
     }
 
     private void addCity() {
@@ -53,9 +57,12 @@ public class World{
 
         view = roboComps.getCityView();
 
-        frame.add(view);
+        panel.add(view);
+
+        frame.add(panel, BorderLayout.CENTER);
 
         frame.pack();
+
     }
 
     private JMenu createActionsMenu() {
@@ -107,24 +114,37 @@ public class World{
     }
 
 
-    private void addControllers(){
+    private void addControllers() {
 
-     //   JPanel panel = new JPanel();
-       // panel.setLayout(new GridBagLayout());
-      //  Container BG = getContentPane();
-    //    BG.setLayout(new BoxLayout());
+        JPanel controller = new JPanel();
+        controller.setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
 
-            frame.add(up).setLocation(1,0);
-            up.setSize(1,1);
+        c.gridx = 1;
+        c.gridy = 0;
+        controller.add(up, c);
+
+        c.gridy = 1;
+        c.gridx = 0;
+        controller.add(left, c);
+
+        c.gridy = 1;
+        c.gridx = 1;
+        controller.add(pick, c);
+
+        c.gridy = 1;
+        c.gridx = 2;
+        controller.add(right, c);
+
+        c.gridx = 1;
+        c.gridy = 3;
+        controller.add(down, c);
+
+        frame.add(controller, BorderLayout.SOUTH);
+        frame.pack();
     }
 
 
-
-    private void addController() {
-        JPanel controller = new JPanel(new BorderLayout());
-
-
-    }
 
     public static void main(String[] args) {
 
@@ -132,6 +152,7 @@ public class World{
         world.addCity();
         world.addMenu();
         world.addControllers();
+
 
     }
 

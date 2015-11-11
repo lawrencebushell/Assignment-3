@@ -38,6 +38,7 @@ public class AI extends Robot implements Runnable {
             move();
     }
 
+    @Override
     public void run() {
         while (true){
             randomMove();

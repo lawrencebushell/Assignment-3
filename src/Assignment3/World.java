@@ -37,6 +37,9 @@ public class World implements Runnable{
 
     private UserRobot player;
     private AI enemy;
+    private static Thread worldThread;
+    private static Thread playerThread;
+    private static Thread enemyThread;
 
 
 
@@ -48,6 +51,18 @@ public class World implements Runnable{
         controller = new JPanel();
     }
 
+    public void startThreads(){
+        worldThread.resume();
+        playerThread.resume();
+        enemyThread.resume();
+    }
+
+    public void stopThreads(){
+        worldThread.suspend();
+        playerThread.suspend();
+        enemyThread.suspend();
+    }
+
     private void addCity() {
 
         City.showFrame(false);
@@ -55,11 +70,11 @@ public class World implements Runnable{
         presentCity = new PresentCity(size, present);
 
         enemy = new AI(presentCity, 5, 5, Direction.NORTH);
-        Thread enemyThread = new Thread(enemy, "AI thread");
+        enemyThread = new Thread(enemy, "AI thread");
         enemyThread.start();
 
         player = new UserRobot (presentCity, 3, 3, Direction.NORTH);
-        Thread playerThread = new Thread(player, "Player thread");
+        playerThread = new Thread(player, "Player thread");
         playerThread.start();
 
         roboComps = new RobotUIComponents(presentCity, 0, 0, size, size);
@@ -183,7 +198,8 @@ public class World implements Runnable{
         up.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                player.executeMove(Direction.NORTH);
+                player.addAction(Direction.NORTH);
+                System.out.println("Player up");
                 }
         });
 
@@ -220,6 +236,7 @@ public class World implements Runnable{
 
                 // player.pickThing();
                 if (player.canPickThing()) {
+                    stopThreads();
                     roboComps.getStartStopButton().doClick();
                     int choice = JOptionPane.showConfirmDialog(null,
                             "You Win! \n Do you want to restart the game?",
@@ -229,6 +246,7 @@ public class World implements Runnable{
                         addCity();
                         addControllers();
                         roboComps.getStartStopButton();
+                        startThreads();
                     }
                     else {
                         System.exit(0);
@@ -270,7 +288,7 @@ public class World implements Runnable{
         world.addMenu();
         world.addControllers();
 
-        Thread worldThread = new Thread(world, "World thread");
+        worldThread = new Thread(world, "World thread");
         worldThread.start();
     }
 

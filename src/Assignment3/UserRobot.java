@@ -20,6 +20,7 @@ public class UserRobot extends Robot implements Runnable{
 
     public UserRobot(City c, int st, int av, Direction d) {
         super(c, st, av, d);
+        this.setColor(Color.blue);
     }
 
     public void addAction(Direction direction){
@@ -27,7 +28,7 @@ public class UserRobot extends Robot implements Runnable{
     }
 
     public void executeMove (Direction direction){
-        if (direction == this.getDirection())this.move();
+        if (direction == this.getDirection() && this.frontIsClear())this.move();
         this.setSpeed(10);
         while (direction != this.getDirection())this.turnLeft();
         this.setSpeed(stdSpeed);

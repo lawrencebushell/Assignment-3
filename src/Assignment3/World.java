@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
  * Main class
  */
 
-public class World{
+public class World implements Runnable{
 
     private int size;       //Size of the frame
     private int present;    //Instead of bombs
@@ -36,6 +36,7 @@ public class World{
     private JButton pick = new JButton("pick");
 
     private UserRobot player;
+    private AI enemy;
 
 
 
@@ -53,7 +54,7 @@ public class World{
 
         presentCity = new PresentCity(size, present);
 
-        AI enemy = new AI(presentCity, 5, 5, Direction.NORTH);
+        enemy = new AI(presentCity, 5, 5, Direction.NORTH);
         Thread enemyThread = new Thread(enemy, "AI thread");
         enemyThread.start();
 
@@ -223,7 +224,16 @@ public class World{
 
     }
 
-
+    @Override
+    public void run() {
+        boolean running = true;
+        while (running){
+            if (player.getIntersection() == enemy.getIntersection()){
+                running = false;
+                roboComps.getStartStopButton().doClick();
+            }
+        }
+    }
 
     public static void main(String[] args) {
 
@@ -231,6 +241,9 @@ public class World{
         world.addCity();
         world.addMenu();
         world.addControllers();
+
+        Thread worldThread = new Thread(world, "World thread");
+        worldThread.start();
 
     }
 

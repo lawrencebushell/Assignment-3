@@ -35,6 +35,8 @@ public class World{
 
     private JButton pick = new JButton("pick");
 
+    private UserRobot player;
+
 
 
     public World() { //Default constructor
@@ -54,6 +56,8 @@ public class World{
         AI enemy = new AI(presentCity, 5, 5, Direction.NORTH);
         Thread enemyThread = new Thread(enemy, "AI thread");
         enemyThread.start();
+
+        player = new UserRobot (presentCity, 3, 3, Direction.NORTH);
 
         roboComps = new RobotUIComponents(presentCity, 0, 0, size, size);
 
@@ -150,6 +154,7 @@ public class World{
 
             public void actionPerformed(ActionEvent e)
             {
+                player.executeMove(Direction.NORTH);
                 System.out.println("Player up");
             }
         });
@@ -157,6 +162,8 @@ public class World{
         down.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
+
+                player.executeMove(Direction.SOUTH);
                 System.out.println("Player down");
             }
         });
@@ -165,6 +172,8 @@ public class World{
 
             public void actionPerformed(ActionEvent e)
             {
+
+                player.executeMove(Direction.WEST);
                 System.out.println("Player left");
             }
         });
@@ -173,6 +182,8 @@ public class World{
 
             public void actionPerformed(ActionEvent e)
             {
+
+                player.executeMove(Direction.EAST);
                 System.out.println("Player right");
             }
         });
@@ -181,6 +192,8 @@ public class World{
 
             public void actionPerformed(ActionEvent e)
             {
+
+                player.pickThing();
                 System.out.println("Player pick");
             }
         });

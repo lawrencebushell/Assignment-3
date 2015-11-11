@@ -58,6 +58,8 @@ public class World{
         enemyThread.start();
 
         player = new UserRobot (presentCity, 3, 3, Direction.NORTH);
+        Thread playerThread = new Thread(player, "Player thread");
+        playerThread.start();
 
         roboComps = new RobotUIComponents(presentCity, 0, 0, size, size);
 
@@ -185,15 +187,14 @@ public class World{
 
             public void actionPerformed(ActionEvent e) {
                 player.executeMove(Direction.NORTH);
-                System.out.println("Player up");
-            }
+                }
         });
 
         down.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
 
-                player.executeMove(Direction.SOUTH);
+                player.addAction(Direction.SOUTH);
                 System.out.println("Player down");
             }
         });
@@ -202,7 +203,7 @@ public class World{
 
             public void actionPerformed(ActionEvent e) {
 
-                player.executeMove(Direction.WEST);
+                player.addAction(Direction.WEST);
                 System.out.println("Player left");
             }
         });
@@ -211,7 +212,7 @@ public class World{
 
             public void actionPerformed(ActionEvent e) {
 
-                player.executeMove(Direction.EAST);
+                player.addAction(Direction.EAST);
                 System.out.println("Player right");
             }
         });

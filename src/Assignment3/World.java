@@ -228,9 +228,16 @@ public class World{
                             "You Win! \n Do you want to restart the game?",
                             "victory!", JOptionPane.YES_NO_OPTION);
                     if (choice == JOptionPane.YES_OPTION){
-                       frame.remove(panel);
-                        roboComps.getStartStopButton().doClick();
+                        frame.remove(panel);
+                        frame.remove(controller);
+                        frame.remove(menu);
+                        frame.repaint();
+                        frame.add(panel);
                     }
+                    else {
+                        System.exit(0);
+                    }
+                    roboComps.getStartStopButton().doClick();
                 }
             }
         });

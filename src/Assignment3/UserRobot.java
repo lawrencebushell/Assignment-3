@@ -34,10 +34,6 @@ public class UserRobot extends Robot implements Runnable{
         this.setSpeed(stdSpeed);
     }
 
-    public void takeOnMe () {
-        if (this.canPickThing())
-            System.out.println("Execute Victory!");
-    }
     @Override
     public void run() {
         while (true) {

@@ -23,15 +23,12 @@ public class AI extends Robot implements Runnable {
     public void randomMove() {
         setSpeed(stdSpeed);
         int nrTurns = randomInt(4);
-        System.out.println(getSpeed());
         double speed = getSpeed();
         if (nrTurns > 0)
             setSpeed(nrTurns*speed);
         for (int i = 0; i < nrTurns; i++) {
             turnLeft();
-            System.out.println("Turn left");
         }
-        System.out.println("Turn done");
         setSpeed(speed);
 
         if(this.frontIsClear())

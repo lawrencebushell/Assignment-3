@@ -5,6 +5,8 @@ import becker.robots.*;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by Frank on 2015-11-09.
@@ -26,13 +28,13 @@ public class World{
     JPanel controller;
     private JButton up = new JButton("up");
     private JButton left = new JButton("left");
-    ;
+
     private JButton down = new JButton("down");
-    ;
+
     private JButton right = new JButton("right");
-    ;
+
     private JButton pick = new JButton("pick");
-    ;
+
 
 
     public World() { //Default constructor
@@ -143,6 +145,46 @@ public class World{
 
         frame.add(controller, BorderLayout.SOUTH);
         frame.pack();
+
+        up.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e)
+            {
+                System.out.println("Player up");
+            }
+        });
+
+        down.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Player down");
+            }
+        });
+
+        left.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e)
+            {
+                System.out.println("Player left");
+            }
+        });
+
+        right.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e)
+            {
+                System.out.println("Player right");
+            }
+        });
+
+        pick.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e)
+            {
+                System.out.println("Player pick");
+            }
+        });
+
     }
 
 

@@ -34,7 +34,8 @@ public class AI extends Robot implements Runnable {
         System.out.println("Turn done");
         setSpeed(speed);
 
-        move();
+        if(this.frontIsClear())
+            move();
     }
 
     public void run() {

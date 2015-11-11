@@ -143,18 +143,7 @@ public class World implements Runnable{
 
         frame.pack();
     }
-
-
-
-    private void restart() {
-        frame.remove(frame);
-
-        addCity();
-        addMenu();
-    }
-
-
-
+    
     private void addControllers() {
 
         JPanel controller = new JPanel();

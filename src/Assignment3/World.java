@@ -81,9 +81,16 @@ public class World implements Runnable{
 
         JMenu actions = new JMenu("Actions");
         actions.add(restart);
+
+
+        restart.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                roboComps.getStartStopButton().doClick();
+            }
+        });
         return actions;
     }
-
     private JMenu createSettingsMenu() {
 
         JRadioButtonMenuItem easy = new JRadioButtonMenuItem("Easy");
@@ -143,17 +150,6 @@ public class World implements Runnable{
 
         frame.pack();
     }
-
-
-
-    private void restart() {
-        frame.remove(frame);
-
-        addCity();
-        addMenu();
-    }
-
-
 
     private void addControllers() {
 
@@ -242,7 +238,6 @@ public class World implements Runnable{
         });
     }
 
-
     @Override
     public void run() {
         boolean running = true;
@@ -267,7 +262,6 @@ public class World implements Runnable{
             }
         }
     }
-
 
     public static void main(String[] args) {
 

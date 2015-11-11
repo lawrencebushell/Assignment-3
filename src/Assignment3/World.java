@@ -21,7 +21,7 @@ public class World implements Runnable{
     private Menu menu;
     private Frame frame;    //"Reasonable" Frame
     private PresentCity presentCity; //Instead of bombcity
-    private RobotUIComponents roboComps;    //Not sure what this is doing
+    private RobotUIComponents roboComps;
     private CityView view;
 
     JPanel panel;
@@ -145,6 +145,16 @@ public class World implements Runnable{
     }
 
 
+
+    private void restart() {
+        frame.remove(frame);
+
+        addCity();
+        addMenu();
+    }
+
+
+
     private void addControllers() {
 
         JPanel controller = new JPanel();
@@ -176,11 +186,9 @@ public class World implements Runnable{
 
         up.addActionListener(new ActionListener() {
 
-            public void actionPerformed(ActionEvent e)
-            {
-                player.addAction(Direction.NORTH);
-                System.out.println("Player up");
-            }
+            public void actionPerformed(ActionEvent e) {
+                player.executeMove(Direction.NORTH);
+                }
         });
 
         down.addActionListener(new ActionListener() {
@@ -194,8 +202,7 @@ public class World implements Runnable{
 
         left.addActionListener(new ActionListener() {
 
-            public void actionPerformed(ActionEvent e)
-            {
+            public void actionPerformed(ActionEvent e) {
 
                 player.addAction(Direction.WEST);
                 System.out.println("Player left");
@@ -204,8 +211,7 @@ public class World implements Runnable{
 
         right.addActionListener(new ActionListener() {
 
-            public void actionPerformed(ActionEvent e)
-            {
+            public void actionPerformed(ActionEvent e) {
 
                 player.addAction(Direction.EAST);
                 System.out.println("Player right");
@@ -214,15 +220,23 @@ public class World implements Runnable{
 
         pick.addActionListener(new ActionListener() {
 
-            public void actionPerformed(ActionEvent e)
-            {
+            public void actionPerformed(ActionEvent e) {
 
-                player.pickThing();
-                System.out.println("Player pick");
+                // player.pickThing();
+                if (player.canPickThing()) {
+                    roboComps.getStartStopButton().doClick();
+                    int choice = JOptionPane.showConfirmDialog(null,
+                            "You Win! \n Do you want to restart the game?",
+                            "victory!", JOptionPane.YES_NO_OPTION);
+                    if (choice == JOptionPane.YES_OPTION){
+                       frame.remove(panel);
+                        roboComps.getStartStopButton().doClick();
+                    }
+                }
             }
         });
-
     }
+
 
     @Override
     public void run() {
@@ -235,6 +249,7 @@ public class World implements Runnable{
         }
     }
 
+
     public static void main(String[] args) {
 
         World world = new World();
@@ -244,7 +259,6 @@ public class World implements Runnable{
 
         Thread worldThread = new Thread(world, "World thread");
         worldThread.start();
-
     }
 
 }

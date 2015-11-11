@@ -24,8 +24,8 @@ public class World implements Runnable{
     private RobotUIComponents roboComps;
     private CityView view;
 
-    JPanel panel;
-    JPanel controller;
+    private JPanel panel;
+    private JPanel controller;
     private JButton up = new JButton("up");
     private JButton left = new JButton("left");
 
@@ -99,7 +99,6 @@ public class World implements Runnable{
 
 
         restart.addActionListener(new ActionListener() {
-
             public void actionPerformed(ActionEvent e) {
                 roboComps.getStartStopButton().doClick();
             }

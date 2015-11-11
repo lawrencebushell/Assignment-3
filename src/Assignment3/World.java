@@ -28,11 +28,8 @@ public class World implements Runnable{
     private JPanel controller;
     private JButton up = new JButton("up");
     private JButton left = new JButton("left");
-
     private JButton down = new JButton("down");
-
     private JButton right = new JButton("right");
-
     private JButton pick = new JButton("pick");
 
     private UserRobot player;
@@ -69,10 +66,12 @@ public class World implements Runnable{
 
         presentCity = new PresentCity(size, present);
 
+        //creating enemy thread
         enemy = new AI(presentCity, 5, 5, Direction.NORTH);
         enemyThread = new Thread(enemy, "AI thread");
         enemyThread.start();
 
+        //creating player thread
         player = new UserRobot (presentCity, 3, 3, Direction.NORTH);
         playerThread = new Thread(player, "Player thread");
         playerThread.start();
@@ -95,7 +94,7 @@ public class World implements Runnable{
         JMenuItem restart = new JMenuItem("Pause/Play");
 
         JMenu actions = new JMenu("Actions");
-        actions.add(restart);
+        actions.add(restart); //action to restart
 
 
         restart.addActionListener(new ActionListener() {
@@ -159,12 +158,12 @@ public class World implements Runnable{
 
         menuBar.add(settings);
 
-
         frame.setJMenuBar(menuBar);
 
         frame.pack();
     }
 
+    //setting positions for controller buttons
     private void addControllers() {
 
         JPanel controller = new JPanel();
@@ -263,7 +262,7 @@ public class World implements Runnable{
                 running = false;
                 roboComps.getStartStopButton().doClick();
                 int choice = JOptionPane.showConfirmDialog(null,
-                        "You Loose! \n Do you want to restart the game?",
+                        "You Lose! \n Do you want to restart the game?",
                         "Defeat!", JOptionPane.YES_NO_OPTION);
                 if (choice == JOptionPane.YES_OPTION){
                     running = true;

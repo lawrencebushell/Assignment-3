@@ -13,6 +13,7 @@ public class PresentCity extends City {
 
     int present;
 
+    //constructor
     public PresentCity(int size, int present) {
         super(size, size);
 
@@ -25,6 +26,7 @@ public class PresentCity extends City {
 
     }
 
+    //generates the position of the target
     private void distributePresent() {
 
         showThingCounts(true);

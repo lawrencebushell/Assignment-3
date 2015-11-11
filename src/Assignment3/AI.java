@@ -13,13 +13,15 @@ import static dit948.Random.randomInt;
  */
 public class AI extends Robot implements Runnable {
 
-    public static double stdSpeed = 5;
+    public static double stdSpeed = 5; //default speed
 
+    //constructor
     public AI(City city, int i, int i1, Direction direction) {
         super(city, i, i1, direction);
         this.setColor(Color.red);
     }
 
+    //computing one group of moves
     public void randomMove() {
         setSpeed(stdSpeed);
         int nrTurns = randomInt(4);
@@ -35,6 +37,7 @@ public class AI extends Robot implements Runnable {
             move();
     }
 
+    //starting the thread
     public void run() {
         while (true){
             randomMove();

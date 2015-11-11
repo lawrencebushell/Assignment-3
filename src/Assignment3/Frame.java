@@ -10,9 +10,9 @@ public class Frame extends JFrame {
 
     //Default constructor
     public Frame(String title) {
-        super(title);
-        setVisible(true);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        super(title); //invoking constructor of jframe class
+        setVisible(true); //shows window
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //closes window when x button is pressed
     }
 
 }

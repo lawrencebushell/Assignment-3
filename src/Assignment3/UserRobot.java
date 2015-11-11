@@ -14,15 +14,17 @@ import java.util.Stack;
 
 public class UserRobot extends Robot implements Runnable{
 
-    private int direction;
-    private Double stdSpeed = 2.0;
+    private int direction; //current direction
+    private Double stdSpeed = 2.0; //default speed
     private Stack<Direction> actionList = new Stack<>();
 
+    //constructor
     public UserRobot(City c, int st, int av, Direction d) {
         super(c, st, av, d);
         this.setColor(Color.blue);
     }
 
+    //remember issued action
     public void addAction(Direction direction){
         actionList.push(direction);
     }
@@ -34,6 +36,7 @@ public class UserRobot extends Robot implements Runnable{
         this.setSpeed(stdSpeed);
     }
 
+    //loop for processing events
     @Override
     public void run() {
         while (true) {

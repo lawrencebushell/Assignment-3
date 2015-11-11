@@ -21,7 +21,7 @@ public class World{
     private Menu menu;
     private Frame frame;    //"Reasonable" Frame
     private PresentCity presentCity; //Instead of bombcity
-    private RobotUIComponents roboComps;    //Not sure what this is doing
+    private RobotUIComponents roboComps;
     private CityView view;
 
     JPanel panel;
@@ -142,6 +142,16 @@ public class World{
     }
 
 
+
+    private void restart() {
+        frame.remove(frame);
+
+        addCity();
+        addMenu();
+    }
+
+
+
     private void addControllers() {
 
         JPanel controller = new JPanel();
@@ -173,8 +183,7 @@ public class World{
 
         up.addActionListener(new ActionListener() {
 
-            public void actionPerformed(ActionEvent e)
-            {
+            public void actionPerformed(ActionEvent e) {
                 player.executeMove(Direction.NORTH);
                 System.out.println("Player up");
             }
@@ -191,8 +200,7 @@ public class World{
 
         left.addActionListener(new ActionListener() {
 
-            public void actionPerformed(ActionEvent e)
-            {
+            public void actionPerformed(ActionEvent e) {
 
                 player.executeMove(Direction.WEST);
                 System.out.println("Player left");
@@ -201,8 +209,7 @@ public class World{
 
         right.addActionListener(new ActionListener() {
 
-            public void actionPerformed(ActionEvent e)
-            {
+            public void actionPerformed(ActionEvent e) {
 
                 player.executeMove(Direction.EAST);
                 System.out.println("Player right");
@@ -211,24 +218,29 @@ public class World{
 
         pick.addActionListener(new ActionListener() {
 
-            public void actionPerformed(ActionEvent e)
-            {
+            public void actionPerformed(ActionEvent e) {
 
-                player.pickThing();
-                System.out.println("Player pick");
+                // player.pickThing();
+                if (player.canPickThing()) {
+                    roboComps.getStartStopButton().doClick();
+                    int choice = JOptionPane.showConfirmDialog(null,
+                            "You Win! \n Do you want to restart the game?",
+                            "victory!", JOptionPane.YES_NO_OPTION);
+                    if (choice == JOptionPane.YES_OPTION){
+                       frame.remove(panel);
+                        roboComps.getStartStopButton().doClick();
+                    }
+                }
             }
         });
-
     }
-
-
-
     public static void main(String[] args) {
 
         World world = new World();
         world.addCity();
         world.addMenu();
         world.addControllers();
+
 
     }
 

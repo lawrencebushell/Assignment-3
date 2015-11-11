@@ -229,16 +229,14 @@ public class World implements Runnable{
                             "You Win! \n Do you want to restart the game?",
                             "victory!", JOptionPane.YES_NO_OPTION);
                     if (choice == JOptionPane.YES_OPTION){
-                        frame.remove(panel);
-                        frame.remove(controller);
-                        frame.remove(menu);
-                        frame.repaint();
-                        frame.add(panel);
+                       panel.remove(view);
+                        addCity();
+                        addControllers();
+                        roboComps.getStartStopButton();
                     }
                     else {
                         System.exit(0);
                     }
-                    roboComps.getStartStopButton().doClick();
                 }
             }
         });

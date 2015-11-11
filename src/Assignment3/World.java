@@ -84,6 +84,27 @@ public class World{
         medium.setSelected(true); // Medium by default
         JRadioButtonMenuItem hard = new JRadioButtonMenuItem("Hard");
 
+        easy.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                AI.stdSpeed = 2;
+            }
+        });
+
+        medium.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                AI.stdSpeed = 5;
+            }
+        });
+
+        hard.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                AI.stdSpeed = 10;
+            }
+        });
+
         // put buttons in a group, so that we know only
         // one of them can be selected at a time
         ButtonGroup settingsGroup = new ButtonGroup();
@@ -195,7 +216,6 @@ public class World{
         world.addCity();
         world.addMenu();
         world.addControllers();
-
 
     }
 

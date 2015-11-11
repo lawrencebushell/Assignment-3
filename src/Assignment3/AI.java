@@ -13,7 +13,7 @@ import static dit948.Random.randomInt;
  */
 public class AI extends Robot implements Runnable {
 
-    private static double stdSpeed = 10;
+    public static double stdSpeed = 5;
 
     public AI(City city, int i, int i1, Direction direction) {
         super(city, i, i1, direction);

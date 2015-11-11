@@ -250,6 +250,20 @@ public class World implements Runnable{
             if (player.getIntersection() == enemy.getIntersection()){
                 running = false;
                 roboComps.getStartStopButton().doClick();
+                int choice = JOptionPane.showConfirmDialog(null,
+                        "You Loose! \n Do you want to restart the game?",
+                        "Defeat!", JOptionPane.YES_NO_OPTION);
+                if (choice == JOptionPane.YES_OPTION){
+                    running = true;
+                    panel.remove(view);
+                    addCity();
+                    addControllers();
+                    roboComps.getStartStopButton();
+                }
+                else {
+                    System.exit(0);
+                }
+
             }
         }
     }

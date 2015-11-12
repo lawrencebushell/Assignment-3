@@ -242,7 +242,6 @@ public class World implements Runnable{
                     if (choice == JOptionPane.YES_OPTION){
                        panel.remove(view);
                         addCity();
-                        addControllers();
                         roboComps.getStartStopButton();
                         startThreads();
                     }
@@ -268,7 +267,6 @@ public class World implements Runnable{
                     running = true;
                     panel.remove(view);
                     addCity();
-                    addControllers();
                     roboComps.getStartStopButton();
                 }
                 else {
